@@ -1,0 +1,34 @@
+{
+    "aliases": ["armlink"],
+    "defaultCommandKind": "link",
+    "optionPrefix": "-",
+    "options": [
+        {"aliases": ["--via", "--Via"], "argFormat" : ["equal", "space"], "type": "response"},
+        {"aliases": ["--output"], "type": "output", "argFormat": ["equal", "space"]},
+        {"aliases": ["--o"], "type": "output", "argFormat": ["space"]},
+        {"aliases": ["--cpu=list", "--fpu=list", "--help", "--version_number", "--vsn"], "type":"cmd", "kind": "ignore"},
+        {
+            "aliases": [
+                "--any_placement", "--any_sort_order", "--callgraph_file",
+                "--callgraph_output", "--cgfile", "--cgsymbol", "--cgundefined",
+                "--cpu", "--datacompressor", "--device", "--diag_error", 
+                "--diag_remark", "--diag_style", "--diag_suppress",
+                "--diag_warning", "--dynamic_linker", "--edit",
+                "--entry", "--errors", "--exceptions_tables",
+                "--feedback", "--feedback_image", "--feedback_type",
+                "--fini", "--first", "--fpu", "--info", "--info_lib_prefix",
+                "--init", "--inline_type", "--keep", "--last", "--libpath",
+                "--library", "--library_type", "--linker_script", "--linux_abitag",
+                "--list", "--match", "--max_er_extension", "--max_veneer_passes",
+                "--max_visibility", "--pad", "--pagesize", "--pltgot", "--pltgot_opts",
+                "--predefine", "--ro_base", "--runpath", "--rw_base", "--scatter",
+                "--section_index_display",  "--soname", "--sort" 
+            ], 
+            "type": "other", "argFormat": ["space", "equal"]
+        }
+    ],
+    "sourceExtensions": {
+        "object": [".out", ".o", ".axf"],
+        "library": [".a", ".lib"]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["armcc", "foo.c"]
+            },
+            "expected": {
+                "kind": "compile",
+                "ppOptions": []
+            }
+        }
+    ]
+}

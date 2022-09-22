@@ -1,0 +1,182 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1","-D_GNU_SOURCE","-o","test.s", "-ansi", "-c","/work/test.c"]
+            },
+            "expected": {
+                "kind": "compile",
+                "binary": "/usr/bin/cc1",
+                "fileFormat": "c",
+                "sources": [{"file": "/work/test.c", "format": "c"}],
+                "target": "/work/test.s",
+                "dir": "/work",
+                "ppOptions": ["-D_GNU_SOURCE","-ansi","-c"],
+                "cScanOptions": ["-ansi"],
+                "cxxScanOptions": ["-ansi"]
+            }
+        },
+        {
+            "name": "relative path",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1","-o","test.s","-c","test.c"],
+                "file": "/work/test.c"
+            },
+            "expected": {
+                "kind": "compile",
+                "sources": [{"file": "/work/test.c", "format": "c"}],
+                "target": "/work/test.s",
+                "dir": "/work"
+            }
+        },
+        {
+            "name": "c++ aliases",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1plus","-D_GNU_SOURCE","-o","test.s", "-ansi", "-c","/work/test.c"]
+            },
+            "expected": {
+                "fileFormat": "c++",
+                "sources": [{"file": "/work/test.c", "format": "c++"}]
+            }
+        },
+        {
+            "name": "ignore",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1","--help","-o","test.s","-c","/work/test.c"]
+            },
+            "expected": {
+                "kind": "ignore"
+            }
+        },
+        {
+            "name": "ignore attached",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1", "--help=cc", "-o","test.s", "-ansi", "-c","test.c"]
+            },
+            "expected": {
+                "kind": "ignore"
+            }
+        },
+        {
+            "name": "ignore space",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1", "-wrapper", "m", "-o","test.s", "-ansi", "-c","test.c"]
+            },
+            "expected": {
+                "kind": "ignore"
+            }
+        },
+        {
+            "name": "delete",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1", "-MT", "-MF", "test.d", "-o","test.s", "-ansi", "-c","test.c"]
+            },
+            "expected": {
+                "ppOptions": ["-ansi","-c"]
+            }
+        },
+        {
+            "name": "optional arg",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1", "-MT", "test.d", "-o","test.s", "-ansi", "-c","test.c"]
+            },
+            "expected": {
+                "ppOptions": ["-ansi","-c"]
+            }
+        },
+        {
+            "name": "scan option map c arg value",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1", "-std=c9x", "-o","test.s", "-c","test.c"]
+            },
+            "expected": {
+                "cScanOptions": ["-std=c99"]
+            }
+        },
+        {
+            "name": "scan option map c++ arg value",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1plus", "-std=gnu++1z", "-o","test.s", "-c","test.c"]
+            },
+            "expected": {
+                "cxxScanOptions": ["-std=gnu++17"]
+            }
+        },
+        {
+            "name": "scan option original arg value",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1plus", "-std=gnu++17", "-o","test.s", "-c","test.c"]
+            },
+            "expected": {
+                "cxxScanOptions": ["-std=gnu++17"]
+            }
+        },
+        {
+            "name": "other option",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1plus", "-D", "X=1", "-DY=1", "-o","test.s", "-c","test.c"]
+            },
+            "expected": {
+                "ppOptions": ["-D", "X=1", "-DY=1", "-c"]
+            }
+        },
+        {
+            "name": "c++ use clang",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1plus", "-o","test.s", "-c","test.c"]
+            },
+            "expected": {
+                "cxxScanOptions": []
+            }
+        }
+    ],
+    "preprocessingOptionTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1","-D_GNU_SOURCE","-o","test.s", "-ansi", "-c","/work/test.c"]
+            },
+            "target": "temp",
+            "format": "c",
+            "expected": [
+                "-isystem","../../include/clang",
+                "-include","../../include/__xvsa_common.h",
+                "-D_GNU_SOURCE","-ansi", "-c",
+                "-E",
+                "-o","temp"
+            ]
+        },
+        {
+            "name": "basic C++",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/cc1plus","-D_GNU_SOURCE","-o","test.s", "-ansi", "-c","/work/test.c"]
+            },
+            "target": "temp",
+            "format": "c++",
+            "expected": [
+                "-isystem","../../include/clang",
+                "-include","../../include/__xvsa_common.h",
+                "-include","../gnu/gnu_cxx_preinclude.h",
+                "-D_GNU_SOURCE","-ansi", "-c",
+                "-E",
+                "-o","temp"
+            ]
+        }
+    ]
+}

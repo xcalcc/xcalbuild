@@ -1,0 +1,56 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Anything in a build dir
+build/*
+out/*
+src/linux/bear/build/*
+
+# Build script related to local
+scripts/build/win/*.bat
+
+# Visual Studio temp
+.vs/*
+
+# Output of tests
+tests/projects/*/repo
+tests/projects/**/preprocess*
+tests/projects/**/scan_result*
+tests/projects/**/.scan_log/*
+tests/projects/**/source_files.json
+tests/projects/**/*.sarif
+tests/projects/**/compile_commands.json
+tests/projects/**/.*
+tests/logs/*
+tests/**/*.log
+scripts/**/*.log

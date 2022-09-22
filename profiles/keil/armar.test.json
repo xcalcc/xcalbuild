@@ -1,0 +1,25 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["armar", "--create", "foo", "--diag_error", "T123", "a.o", "b.o"]
+            },
+            "expected": {
+                "kind": "archive",
+                "binary": "armar",
+                "fileFormat": "ext",
+                "sources": [
+                    {"file": "/work/a.o", "format": "object"},
+                    {"file": "/work/b.o", "format": "object"}
+                ],
+                "target": "/work/foo",
+                "dir": "/work",
+                "ppOptions": ["--diag_error", "T123"],
+                "cScanOptions": [],
+                "cxxScanOptions": []
+            }
+        }
+    ]
+}

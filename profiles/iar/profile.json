@@ -1,0 +1,17 @@
+{
+    "tools": [
+        {
+            "profile": "./iccarm.json"
+        },
+        {
+            "profile": "./ilink.json"
+        },
+        {
+            "profile": "./iarchive.json"
+        },
+        {
+            "profile": "./iasmarm.json"
+        }
+
+    ]
+}

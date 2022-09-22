@@ -1,0 +1,25 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["armlink", "--device", "foo", "a.o", "b.o", "--o", "foo.out"]
+            },
+            "expected": {
+                "kind": "link",
+                "binary": "armlink",
+                "fileFormat": "ext",
+                "sources": [
+                    {"file": "/work/a.o", "format": "object"},
+                    {"file": "/work/b.o", "format": "object"}
+                ],
+                "target": "/work/foo.out",
+                "dir": "/work",
+                "ppOptions": ["--device", "foo"],
+                "cScanOptions": [],
+                "cxxScanOptions": []
+            }
+        }
+    ]
+}

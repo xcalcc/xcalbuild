@@ -1,0 +1,7 @@
+add_subdirectory(gcc-multi-source)
+add_subdirectory(duplicated-link-target-name)
+add_subdirectory(probe-macros)
+add_subdirectory(profile-tester)
+add_subdirectory(xcalbuild-command-line)
+add_subdirectory(track-include-deps)
+add_subdirectory(auto-detect-profile)

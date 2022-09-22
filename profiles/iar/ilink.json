@@ -1,0 +1,59 @@
+{
+    "aliases": ["ilink", "ilinkarm"],
+    "defaultCommandKind": "link",
+    "optionPrefix": "-",
+    "options": [
+        {"aliases": ["-f", "--f"], "type": "response", "argFormat" : ["space"]},
+        {"aliases": ["-o", "--output"], "type": "output", "argFormat": ["space"]},
+        {
+            "aliases": [
+                "--version",
+                "--help"
+            ],
+            "type": "cmd",
+            "kind": "ignore"
+        },
+        {
+            "aliases" : [
+                "--dependencies",
+                "--dependencies=i",
+                "--dependencies=m",
+                "--diagnostics_tables",
+                "--export_builtin_config",
+                "--log_file"
+            ],
+            "type": "delete", "argFormat": ["space"]
+        },
+        {
+            "aliases": [
+                "--call_graph",
+                "--config",
+                "--config_def",
+                "--config_search",
+                "--cpp_init_routine",
+                "--define_symbol",
+                "--entry",
+                "--etra_init",
+                "--image_input",
+                "--import_cmse_lib_in",
+                "--import_cmse_lib_out",
+                "--keep",
+                "--log",
+                "--map",
+                "--no_inline",
+                "--place_holder",
+                "--preconfig",
+                "--redirect",
+                "-L",
+                "--search",
+                "--text_out",
+                "--whole_archive"
+            ],
+            "type": "other", "argFormat": ["space"]
+        }
+    ],
+    "sourceExtensions": {
+        "object": [".out", ".o"],
+        "library": [".a"]
+    }
+}

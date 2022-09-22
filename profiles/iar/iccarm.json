@@ -1,0 +1,159 @@
+{
+    "aliases": ["iccarm"],
+    "cxxAliases" : ["iccarm"],
+    "defaultCommandKind": "compile",
+    "optionPrefix": "-",
+    "options": [
+        {"aliases": ["-f", "--f"], "argFormat" : ["space", "equal"], "type": "response"},
+        {
+            "aliases": ["--c89"],
+            "type":"language",
+            "argValues" : { "" : "c" }
+        },
+        {
+            "aliases": ["--c++"],
+            "type":"language",
+            "argValues" : { "" : "c++" }
+        },
+        {"aliases":["--c89"], "type":"scan", "cScanOption" : "-std=c89"},
+        {"aliases": ["--version", "--help", "--cpu=list", "--fpu=list"], "type":"cmd", "kind":"ignore"},
+        // This option gets added by the IDE and makes the output hard to read
+        // remove it to clean up output when preprocessing
+        {"aliases": ["--IDE2"], "type":"delete"},
+        {
+            // iccarm creates side files using the following options
+            // we disable them during our preprocessing step to avoid
+            // overwritting things unintentionally
+            "aliases": [
+                "--diagnositcs_tables",
+                "--dependencies",
+                "--dependencies=i",
+                "--dependencies=m",
+                "--dependencies=n",
+                "--dependencies=is",
+                "--dependencies=ms",
+                "--dependencies=ns",
+                "-l", "-la", "-lA", "-lb",
+                "-lB", "-lc", "-lC", "-lD",
+                "-lN", "-laN", "-lAN", "-lbN",
+                "-lBN", "-lcN", "-lCN", "-lDN",
+                "-lH", "-laH", "-lAH", "-lbH",
+                "-lBH", "-lcH", "-lCH", "-lDH",
+                "-lNH", "-laNH", "-lANH", "-lbNH",
+                "-lBNH", "-lcNH", "-lCNH", "-lDNH",
+                "--predef_macros",
+                "--preprocess",
+                "--preprocess=c",
+                "--preproces=n",
+                "--preprocess=s"
+            ],
+            "type":"delete",
+            "argFormat":["space", "equal"]
+        },
+        {"aliases": ["-o", "--output"], "type": "output", "argFormat": ["space", "equal"]},
+        /* iccarm's preprocess option expects a file to output to
+           so use a trick to set the correct value. The following must
+           appear after the delete of --preprocess above.
+
+           Since we use the last output option in the options list when composing
+           the preprocessing command line, the following must also appear after
+           other output options.
+        */
+        {"aliases": ["--preprocess=n"], "type": "output", "argFormat": ["space", "equal"]},
+        {"aliases": ["--preinclude"], "type": "include", "argFormat": ["space", "equal"]},
+        {"aliases": [ "-D", "-I" ], "type":"other", "argFormat" : ["attached", "space", "equal"] },
+        {
+            "aliases":[
+                "--cpu_mode",
+                "--dlib_config",
+                "--pending_instantiations",
+                "--preinclude",
+                "--public_equ",
+                "--section",
+                "--source_encoding",
+                "--system_include_dir",
+                "--text_out",
+                "--aapcs", "--cpu",
+                "--deprecated_feature_warnings", "--diag_error",
+                "--diag_remark", "--diag_suppress", "--diag_warning",
+                "--enable_hardware_workaround", "--endian", "--error_limit",
+                "--fpu", "--loc_regs", "--max_cost_constexpr_call",
+                "--max_depth_constexpr_call"
+            ],
+            "type":"other",
+            "argFormat" : ["space", "equal"]
+        }
+    ],
+    "cPrependPreprocessingOptions": [],
+    "cAppendPreprocessingOptions": [],
+    "cxxPrependPreprocessingOptions": [],
+    "cxxAppendPreprocessingOptions": [],
+    "cPrependScanOptions": ["-Wf,-fiar", "-m32", "-std=c99", "-std=gnu99"],
+    "cxxPrependScanOptions": ["-Wf,-fiar", "-m32"],
+    "sourceExtensions": {
+        "preprocessed": [".i", ".ii"],
+        "c": [".c"],
+        "c++": [".cc", ".cp", ".cxx", ".cpp", ".CPP", ".c++", ".C"],
+        "assembly": [".s"]
+    },
+    "probeCMacros":{
+        "__STDC_VERSION__": {
+            "__STDC_VERSION__": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu89"]}],
+            "199409L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu89"]}],
+            "199901L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu99"]}],
+            "201112L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu11"]}],
+            "201710L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu11"]}]
+        }
+    },
+    "probeCxxMacros":{
+        "__cplusplus": {
+            "199711L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++98"]}],
+            "201103L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++11"]}],
+            "201402L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++14"]}],
+            "201703L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++17"]}]
+        }
+    },
+    "textSubstitutions": [
+        // IAR doesn't like using preprocessor to redefine symbols
+        // so do it with regex instead
+        { "string": "__absolute", "replacement": "" },
+        { "string": "__arm", "replacement": "" },
+        { "string": "__big_endian", "replacement": "" },
+        { "string": "__cmse_nonsecure_call", "replacement": "" },
+        { "string": "__cmse_nonsecure_entry", "replacement": "" },
+        { "string": "__fiq", "replacement": "" },
+        { "string": "__interwork", "replacement": "" },
+        { "string": "__intrinsic", "replacement": "" },
+        { "string": "__irq", "replacement": "" },
+        { "string": "__little_endian", "replacement": "" },
+        { "string": "__nested", "replacement": "" },
+        { "string": "__irq", "replacement": "" },
+        { "string": "__no_alloc", "replacement": "" },
+        { "string": "__no_alloc16", "replacement": "" },
+        { "string": "__no_alloc_str", "replacement": "" },
+        { "string": "__no_alloc_str16", "replacement": "" },
+        { "string": "__no_init", "replacement": "" },
+        { "string": "__noreturn", "replacement": "" },
+        { "string": "__packed", "replacement": "" },
+        { "string": "__pcrel", "replacement": "" },
+        { "string": "__ramfunc", "replacement": "" },
+        { "string": "__ro_placement", "replacement": "" },
+        { "string": "__root", "replacement": "" },
+        { "string": "__sbrel", "replacement": "" },
+        { "string": "__stackless", "replacement": "" },
+        { "string": "__swi", "replacement": "" },
+        { "string": "__task", "replacement": "" },
+        { "string": "__thumb", "replacement": "" },
+        { "string": "__weak", "replacement": "" },
+        { "string": "__nounwind", "replacement": "" },
+        { "string": "__spec_string", "replacement": "" },
+        { "regex": "_Pragma\\(\"[^\\)]*\"\\)", "replacement": "" },
+        { "regex": "__constrange\\( *[0-9]+, *[0-9]+ *\\)", "replacement": "" },
+        // For now we support the @ operator where it is followed by a literal
+        // not clear if other things can follow @.
+        { "regex" : "@[^=]*=", "replacement": "=" },
+        { "regex" : "@[^;]*;", "replacement": ";" },
+        { "regex" : "@[^,]*,", "replacement": "," },
+        { "regex" : "@[^\n]*\n", "replacement": "\n" }
+    ]
+}

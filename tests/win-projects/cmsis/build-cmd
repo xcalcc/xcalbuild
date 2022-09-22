@@ -1,0 +1,4 @@
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\IarBuild.exe"
+.\CMSIS\DSP\Projects\IAR\arm_cortexM_math.ewp
+-build
+*

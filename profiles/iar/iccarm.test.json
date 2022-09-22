@@ -1,0 +1,39 @@
+{
+    "sourceTransformationTests": [
+        {
+            "name": "@ operator var declaration",
+            "source": "int a @ 0xDEADBEEF;",
+            "expected": "int a ;"
+        },
+        {
+            "name": "@ operator var init",
+            "source": "int a @ 0xDEADBEEF = 0xFFFFFF;",
+            "expected": "int a = 0xFFFFFF;"
+        },
+        {
+            "name": "_Pragam operator",
+            "source": "_Pragma(\"my pragma\")",
+            "expected": ""
+        }
+    ],
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["iccarm","--preprocess","foo.c.i","-D","FOO=1","--cpu=ARM","-o","foo.out","foo.c"]
+            },
+            "expected": {
+                "kind": "compile",
+                "binary": "iccarm",
+                "fileFormat": "c++",
+                "sources": [{"file": "/work/foo.c", "format": "c++"}],
+                "target": "/work/foo.out",
+                "dir": "/work",
+                "ppOptions": ["-D","FOO=1","--cpu=ARM"],
+                "cScanOptions": ["-Wf,-fiar", "-m32", "-std=c99", "-std=gnu99"],
+                "cxxScanOptions": ["-Wf,-fiar", "-m32"]
+            }
+        }
+    ]
+}

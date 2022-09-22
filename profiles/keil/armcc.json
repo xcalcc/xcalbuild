@@ -1,0 +1,71 @@
+{
+    "aliases": ["armcc"],
+    "defaultCommandKind": "compile",
+    "optionPrefix": "-",
+    "options": [
+        {"aliases": ["--via", "--Via"], "argFormat" : ["equal", "space"], "type": "response"},
+        {"aliases": ["--code_gen", "-E", "--help", "-M", "-P", "--cpu=list", "--version_number", "--vsn", "--fpu=list"], "type":"cmd", "kind": "ignore"},
+        {"aliases": ["-E"], "type": "preprocess"},
+        {"aliases": ["--list"], "type":"delete" },
+        {"aliases": ["--list_dir", "--asm_dir", "--depend", "--depend_dir"], "type":"delete", "argFormat": ["space", "equal"] },
+        {"aliases": ["--configure_extra_includes", "--sys_include"], "argFormat":["equal", "space"], "type": "isystem"},
+        {"aliases": ["-D"], "argFormat":["attached", "space"], "type": "other"},
+        {"aliases": ["-I"], "argFormat":["attached", "space"], "type": "include"},
+        {"aliases": ["--preinclude"], "argFormat":["equal", "space"], "type": "include"},
+        {"aliases": ["-output-dir"], "argFormat":["equal", "space"], "type": "output"},
+        {"aliases": ["-o"], "argFormat":["space"], "type": "output"},
+        {"aliases": ["--trigraphs"], "type": "scan", "cScanOption": "-trigraph"},
+        {
+            "aliases":[
+                "--apcs", "--arm_linux_config_file",
+                "-bss_threshold", "--compatible", "--configure_cpp_headers",
+                "--configure_extra_includes", "--configure_extra_libraries",
+                "--configure_gas", "--configure_gcc", "--configure_gcc_version",
+                "--configure_gld", "--configure_sysroot", "--cpu", "--create_pch",
+                "--default_definition_visibility", "--default_extension", "--depend",
+                "--depend_format", "--depend_target", "--device",
+                "--diag_error", "--diag_remark", "--diag_style", "--diag_suppress",
+                "--diag_warning", "--errors", "--feedback", "--fp16_format", "--fpmode",
+                "--fpu", "--global_reg", "--gnu_version", "--info", "--library_interface",
+                "--library_type", "--locale", "--loop_optimization_level",
+                "--message_locale", "--min_array_alignment", "--multiply_latency",
+                "--pch_dir", "--pending_instantiations", "--pointer_alignment",
+                "--retain", "--use_pch", "--omf_browse"
+            ],
+            "type":"other",
+            "argFormat" : ["space", "equal"]
+        }
+
+    ],
+    "probeCMacros":{
+        "__STDC_VERSION__": {
+            "__STDC_VERSION__": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu89"]}],
+            "199409L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu89"]}],
+            "199901L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu99"]}],
+            "201112L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu11"]}],
+            "201710L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu11"]}]
+        }
+    },
+    "probeCxxMacros":{
+        "__cplusplus": {
+            "199711L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++98"]}],
+            "201103L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++11"]}],
+            "201402L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++14"]}],
+            "201703L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++17"]}]
+        }
+    },
+    "cPrependPreprocessingOptions": [],
+    "cAppendPreprocessingOptions": [],
+    "cxxPrependPreprocessingOptions": [],
+    "cxxAppendPreprocessingOptions": [],
+    "cPrependScanOptions": ["-Wf,-fkeil", "-m32"],
+    "cxxPrependScanOptions": ["-Wf,-fkeil", "-m32"],
+    "cPreIncludes": ["./armcc_preinclude.h"],
+    "cxxPreIncludes": ["./armcc_preinclude.h"],
+    "sourceExtensions": {
+        "preprocessed": [".i", ".ii"],
+        "c": [".c"],
+        "c++": [".cc", ".cp", ".cxx", ".cpp", ".CPP", ".c++", ".C"],
+        "assembly": [".s"]
+    }
+}

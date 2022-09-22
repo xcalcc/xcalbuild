@@ -1,0 +1,45 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/ar","r","CMakeFiles/json-c-static.a","CMakeFiles/json-c-static.dir/arraylist.c.o","/work/CMakeFiles/json-c-static.dir/json-tokens.c.o"]
+            },
+            "expected": {
+                "kind": "archive",
+                "binary": "/usr/bin/ar",
+                "fileFormat": "ext",
+                "sources": [
+                    {"file": "/work/CMakeFiles/json-c-static.dir/arraylist.c.o", "format": "object"},
+                    {"file": "/work/CMakeFiles/json-c-static.dir/json-tokens.c.o", "format": "object"}
+                ],
+                "target": "/work/CMakeFiles/json-c-static.a",
+                "dir": "/work",
+                "ppOptions": ["r"],
+                "cScanOptions": [],
+                "cxxScanOptions": []
+            }
+        },
+        {
+            "name": "e",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/ar","crv","a", "/work/CMakeFiles/json-c-static.dir/json-tokens.c.o"]
+            },
+            "expected": {
+                "kind": "archive",
+                "binary": "/usr/bin/ar",
+                "fileFormat": "ext",
+                "sources": [
+                    {"file": "/work/CMakeFiles/json-c-static.dir/json-tokens.c.o", "format": "object"}
+                ],
+                "target": "/work/a",
+                "dir": "/work",
+                "ppOptions": ["crv"],
+                "cScanOptions": [],
+                "cxxScanOptions": []
+            }
+        }
+    ]
+}

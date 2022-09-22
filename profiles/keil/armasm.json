@@ -1,0 +1,35 @@
+{
+    "aliases": ["armasm"],
+    "defaultCommandKind": "assemble",
+    "optionPrefix": "-",
+    "options": [
+        {"aliases": ["--via", "--Via"], "type": "response", "argFormat" : ["equal", "space"]},
+        {"aliases": ["-o"], "type": "output", "argFormat": ["space"]},
+        {
+            "aliases": [
+                "--vsn",
+                "--help",
+                "--cpu=list",
+                "--fpu=list", 
+                "-m",
+                "-md"
+            ],
+            "type": "cmd",
+            "kind": "ignore"
+        },
+        {
+            "aliases": [
+                "--apcs", "--cpu", "--depend", "--depend_format",
+                "--diag_error", "--diag_remark", "--diag_tyle",
+                "--diag_suppress", "--diag_warning", "--errors",
+                "--fpumode", "--fpu", "--length", "--library_type",
+                "--list", "--maxcache", "--predefine", "--width", "--pd"
+            ],
+            "type": "other",
+            "argFormat" : ["equal","space"]
+        }
+    ],
+    "sourceExtensions": {
+        "assembly": [".s"]
+    }
+}

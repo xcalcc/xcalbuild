@@ -1,0 +1,23 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["/usr/bin/as","-o","CMakeFiles/json-c-static.dir/arraylist.c.o","/tmp/123abc.s"],
+                "file": "/tmp/123abc.s"
+            },
+            "expected": {
+                "kind": "assemble",
+                "binary": "/usr/bin/as",
+                "fileFormat": "ext",
+                "sources": [{"file": "/tmp/123abc.s", "format": "assembly"}],
+                "target": "/work/CMakeFiles/json-c-static.dir/arraylist.c.o",
+                "dir": "/work",
+                "ppOptions": [],
+                "cScanOptions": [],
+                "cxxScanOptions": []
+            }
+        }
+    ]
+}

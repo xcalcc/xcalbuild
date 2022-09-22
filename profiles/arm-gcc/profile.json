@@ -1,0 +1,13 @@
+{
+    "tools": [
+        {
+            "profile": "./arm-gcc.json"
+        },
+        {
+            "profile": "../gnu/ld.json"
+        },
+        {
+            "profile": "../gnu/ar.json"
+        }
+    ]
+}

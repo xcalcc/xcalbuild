@@ -1,0 +1,4 @@
+{
+    "aliases": ["armcc"],
+    "defaultCommandKind": "compile"
+}

@@ -1,0 +1,31 @@
+{
+    "aliases": ["iarchive"],
+    "defaultCommandKind": "archive",
+    "optionPrefix": "-",
+    "options": [
+        {
+            "aliases": [
+                "--delete", "-d", "--extract", "-x", "--extract_overwrite", 
+                "-X", "--version", "--help"
+            ],
+            "argFormat" : ["attached"],
+            "type" : "cmd",
+            "kind" : "ignore"
+        },
+        {"aliases": ["-f"], "type": "response", "argFormat" : ["space", "equal"]},
+        {"aliases": ["-o", "--output"], "type": "output", "argFormat" : ["space", "equal"]},
+        {
+            "aliases": [ "--text_out" ],
+            "type": "other",
+            "argFormat" : ["space", "equal"]
+        }
+    ],
+    "sourceExtensions": {
+        "object": [".o"]
+    },
+/* Set target extensions to identify the archive,
+   since it is not specified by an option. */
+    "targetExtensions": {
+        "library": [".a", ".so"]
+    }
+}

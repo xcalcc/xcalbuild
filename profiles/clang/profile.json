@@ -1,0 +1,13 @@
+{
+    "tools": [
+        {
+            "profile": "./clang.json"
+        },
+        {
+            "profile": "../gnu/ld.json"
+        },
+        {
+            "profile": "../gnu/ar.json"
+        }
+    ]
+}

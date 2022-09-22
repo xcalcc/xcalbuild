@@ -1,0 +1,28 @@
+{
+    "aliases": ["iasmarm"],
+    "defaultCommandKind": "assemble",
+    "optionPrefix": "-",
+    "options": [
+        {"aliases": ["-f"], "type": "response", "argFormat" : ["space"]},
+        {"aliases": ["-o"], "type": "output", "argFormat": ["space"]},
+        {"aliases": ["-O"], "type": "output", "argFormat": ["attached"]},
+        {
+            "aliases": [
+                "-l", "-P", "--abi", "--cpu", "--cpu_mode", "--endian",
+                "--fpu", "--legacy", "--source_encoding", "--system_include_directory"
+            ],
+            "type": "other",
+            "argFormat" : ["space"]
+        },
+        {
+            "aliases": [
+                "--version"
+            ],
+            "type": "cmd",
+            "kind": "ignore"
+        }
+    ],
+    "sourceExtensions": {
+        "assembly": [".s", ".msa", ".asm"]
+    }
+}

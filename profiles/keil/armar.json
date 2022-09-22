@@ -1,0 +1,37 @@
+{
+    "aliases": ["armar"],
+    "defaultCommandKind": "archive",
+    "optionPrefix": "-",
+    "options": [
+        {
+            "aliases": [
+                "-d", "--entries", "-x", "--version_number", 
+                "--vsn", "--help", "-m", "-p", "--sizes",
+                "-t", "--zs", "--zt"
+
+            ],
+            "argFormat" : ["attached"],
+            "type" : "cmd",
+            "kind" : "ignore"
+        },
+        {"aliases": ["--via"], "type": "response", "argFormat" : ["space", "equal"]},
+        {"aliases": ["--create"], "type": "output", "argFormat" : ["space", "equal"]},
+        {
+            "aliases": [ 
+                "-a", "-b", "--diag_error", "--diag_remark", 
+                "--diag_style", "--diag_suppress", "--diag_warning",
+                "-i" 
+            ],
+            "type": "other",
+            "argFormat" : ["space", "equal"]
+        }
+    ],
+    "sourceExtensions": {
+        "object": [".o"]
+    },
+/* Set target extensions to identify the archive,
+   since it is not specified by an option. */
+    "targetExtensions": {
+        "library": [".a", ".so"]
+    }
+}

@@ -1,0 +1,5 @@
+REPO_URL=https://github.com/bminor/binutils-gdb.git
+REPO_ID=2dcf9205c32aa69c102640962ff03746d04c02cc
+REVISION=2dcf9205c32aa69c102640962ff03746d04c02cc
+PROFILE=gnu
+TRACING=static

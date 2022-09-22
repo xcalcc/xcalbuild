@@ -1,0 +1,16 @@
+{
+    "tools": [
+        {
+            "profile": "./cc1.json"
+        },
+        {
+            "profile": "./as.json"
+        },
+        {
+            "profile": "./ar.json"
+        },
+        {
+            "profile": "./ld.json"
+        }
+    ]
+}

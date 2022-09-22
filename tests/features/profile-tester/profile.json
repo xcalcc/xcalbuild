@@ -1,0 +1,14 @@
+{
+    "aliases": ["armcc"],
+    "defaultCommandKind": "compile",
+    "optionPrefix": "-",
+    "options": [
+        {"aliases": ["--via", "--Via"], "argFormat" : ["equal", "space"], "type": "response"}
+    ],
+    "sourceExtensions": {
+        "preprocessed": [".i", ".ii"],
+        "c": [".c"],
+        "c++": [".cc", ".cp", ".cxx", ".cpp", ".CPP", ".c++", ".C"],
+        "assembly": [".s"]
+    }
+}

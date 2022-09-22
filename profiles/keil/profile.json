@@ -1,0 +1,16 @@
+{
+    "tools": [
+        {
+            "profile": "./armcc.json"
+        },
+        {
+            "profile": "./armlink.json"
+        },
+        {
+            "profile": "./armasm.json"
+        },
+        {
+            "profile": "./armar.json"
+        }
+    ]
+}

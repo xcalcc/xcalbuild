@@ -1,0 +1,7 @@
+{
+    "tools": [
+        {
+            "profile": "./gcc.json"
+        }
+    ]
+}

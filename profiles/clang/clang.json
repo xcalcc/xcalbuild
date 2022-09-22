@@ -1,0 +1,229 @@
+// From `man clang` and `clang --help`
+{
+    "aliases": [
+        "clang", "clang-7", "clang-8", "clang-9", "clang-10", "clang-11", "clang-12",
+        "clang++", "clang++-7", "clang++-8", "clang++-9", "clang++-10", "clang++-11", "clang++-12"],
+    "cxxAliases": ["clang++", "clang++-7", "clang++-8", "clang++-9", "clang++-10", "clang++-11", "clang++-12"],
+    "defaultCommandKind": "compile",
+    "optionPrefix": "-",
+    "options": [
+        {"aliases": ["-o"], "type": "output", "argFormat": ["space"]},
+        {
+            "aliases": ["-x"],
+            "argFormat": ["space"],
+            "type": "language",
+            "argValues": {
+                "c": "c",
+                "c-header": "c",
+                "cpp-output": "c",
+                "c++": "c++",
+                "c++-header": "c++",
+                "c++-cpp-output": "c++",
+                "none": "ext"
+            }
+        },
+        {
+            "aliases": [
+                "-S",
+                // Note the preprocess option comes later so we match this first.
+                "-E",
+                "--analyze",
+                "-fsyntax-only",
+                "-###",
+                "-help",
+                "--help",
+                "--help-hidden",
+                "--version",
+                "-M",
+                "-MM",
+                "-print-effective-triple",
+                "-print-libgcc-file-name",
+                "-print-resource-dir",
+                "-print-search-dirs",
+                "-print-supported-cpus"
+            ],
+            "type": "cmd",
+            "kind": "ignore"
+        },
+        // Ignore -cc1 to avoid double handling.
+        {"aliases": ["-cc1"], "type": "cmd", "kind": "ignore"},
+        {"aliases": ["-emit-pch"], "type": "cmd", "kind": "ignore"},
+        // Ignore linker to avoid double handling, might need to find other
+        // indicators of linker command if these are not present.
+        {"aliases": ["-fuse-ld"], "type": "cmd", "kind": "ignore", "argFormat": ["equal"]},
+        {"aliases": ["-Wl"], "type": "cmd", "kind": "ignore", "argFormat": ["attached"]},
+        {
+            "aliases": [
+                "-print-file-name",
+                "-print-prog-name"
+            ],
+            "type": "cmd",
+            "kind": "ignore",
+            "argFormat": ["attached"]
+        },
+        {
+            "aliases": [
+                "-MP",
+                "-MG",
+                "-MD",
+                "-MF",
+                "-MMD",
+                "-MT",
+                "-MQ"
+            ],
+            "type": "delete",
+            "argFormat": ["space"]
+        },
+        {
+            "aliases": [
+                "-arcmt-migrate-report-output",
+                "-B",
+                "--config",
+                "-coverage-notes-file",
+                "-cxx-isystem",
+                "-D",
+                "-dependency-dot",
+                "-dependency-file",
+                // These need to come before the "-f" below.
+                "-fdebug-compilation-dir",
+                "-ferror-limit",
+                "-fmessage-length",
+                "-fmodules-user-build-path",
+                "-ftemplate-backtrace-limit",
+                "-fvisibility",
+                "-fxray-always-instrument=",
+                "-fxray-attr-list=",
+                "-fxray-instruction-threshold=",
+                "-fxray-instrumentation-bundle=",
+                "-fxray-modes=",
+                "-fxray-never-instrument=",
+                "-F",
+                "-G",
+                "-idirafter",
+                "-iframeworkwithsysroot",
+                "-iframework",
+                "-imacros",
+                "-include-pch",
+                "-include",
+                "-internal-isystem",
+                "-internal-externc-isystem",
+                "-iprefix",
+                "-iquote",
+                "-isysroot",
+                "-isystem-after",
+                "-isystem",
+                "-ivfsoverlay",
+                "-iwithprefixbefore",
+                "-iwithprefix",
+                "-iwithsysroot",
+                "-I",
+                "-L",
+                "-main-file-name",
+                "-mcode-model",
+                "-meabi",
+                "-mllvm",
+                "-module-dependency-dir",
+                "-mregparm",
+                "-mrelocation-model",
+                "-mthread-model",
+                "-MT",
+                "-pic-level",
+                "-resource-dir",
+                "-serialize-diagnostics",
+                "-stdlib++-isystem",
+                "-stack-protector",
+                "-target-cpu",
+                "-triple",
+                "-Tbss",
+                "-Tdata",
+                "-Ttext",
+                "-T",
+                "-U",
+                "-Xanalyzer",
+                "-Xassembler",
+                "-Xclang",
+                "-Xcuda-fatbinary",
+                "-Xcuda-ptxas",
+                "-Xlinker",
+                // -Xopenmp-target=<triple> <arg>
+                // Change the triple to local target if the default is not right.
+                "-Xopenmp-target=x86_64-pc-linux-gnu",
+                //"-Xopenmp-target=nvptx64-nvidia-cuda",
+                "-Xpreprocessor",
+                "-z"
+            ],
+            "type": "other", "argFormat": ["space"]
+        },
+        {"aliases": ["-f", "-W", "-g", "-O"], "type": "other", "argFormat": ["attached"]},
+        {"aliases": ["-E"], "type": "preprocess"},
+        {"aliases": ["-ansi"], "type": "scan"},
+        {
+            "aliases": ["-std"],
+            "type": "scan",
+            "argFormat": ["equal"],
+            "scanArgFormat": "equal",
+            "cArgValues": {
+                "iso9899:199x": "c99",
+                "c9x": "c99",
+                "gnu9x": "gnu99",
+                "gnu1x": "gnu11"
+            },
+            "cxxArgValues": {
+                "gnu++1z": "gnu++17",
+                "c++1z": "c++17",
+                "gnu++1y": "gnu++14",
+                "c++1y": "c++14",
+                "gnu++0x": "gnu++11",
+                "c++0x": "c++11",
+                "gnu++2a": "gnu++20",
+                "c++2a": "c++20"
+            }
+        },
+        {"aliases": ["-include"], "type": "include", "argFormat": ["space"]},
+        {"aliases": ["-isystem"], "type": "isystem", "argFormat": ["space"]},
+        {"aliases": ["-trigraphs"], "type": "scan"},
+        {"aliases": ["-target"], "type": "scan", "argFormat": ["space"], "scanArgFormat": "space"},
+        {"aliases": ["@"], "type": "response", "argFormat" : ["attached"]}
+    ],
+    "cPrependPreprocessingOptions": [],
+    "cAppendPreprocessingOptions": [],
+    "cPrependScanOptions": ["-clang"],
+    "cSystemIncludePaths": ["../../include/clang"],
+    "cPreIncludes": [],
+    "cxxPrependPreprocessingOptions": [],
+    "cxxAppendPreprocessingOptions": [],
+    "cxxPrependScanOptions": ["-clang"],
+    "cxxSystemIncludePaths": ["../../include/clang"],
+    "cxxPreIncludes": [],
+    "probeCMacros":{
+        "__STDC_VERSION__": {
+            "__STDC_VERSION__": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu89"]}],
+            "199409L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu89"]}],
+            "199901L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu99"]}],
+            "201112L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu11"]}],
+            "201710L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu11"]}]
+        }
+    },
+    "probeCxxMacros":{
+        "__cplusplus": {
+            "199711L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++98"]}],
+            "201103L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++11"]}],
+            "201402L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++14"]}],
+            "201703L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++17"]}]
+        }
+    },
+    "sourceExtensions": {
+        "preprocessed": [".i", ".ii"],
+        "c": [".c"],
+        "c++": [".cc", ".cp", ".cxx", ".cpp", ".CPP", ".c++", ".C"],
+        "assembly": [".s", ".S"]
+    },
+    // The clang fe can't handle these asm constraints.
+    "textSubstitutions": [{
+        "string": "\"=@ccnz\"",
+        "replacement": "\"=q\""
+    },{
+        "string": "\"=@ccc\"",
+        "replacement": "\"=q\""
+    }]
+}

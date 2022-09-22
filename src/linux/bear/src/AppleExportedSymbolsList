@@ -1,0 +1,8 @@
+_vfork
+_execv
+_execve
+_execvp
+_execvP
+_execl
+_execlp
+_execle

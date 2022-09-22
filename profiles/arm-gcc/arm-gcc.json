@@ -1,0 +1,166 @@
+// Same as ../gnu-cc/gcc.json except for C++ header replacement.
+{
+    "aliases": ["arm-none-eabi-gcc", "arm-none-eabi-g++"],
+    "cxxAliases": ["arm-none-eabi-g++"],
+    "defaultCommandKind": "compile",
+    "optionPrefix": "-",
+    "options": [
+        {
+            "aliases": ["-x"],
+            "argFormat": ["space"],
+            "type": "language",
+            "argValues": {
+                "c": "c",
+                "c-header": "c",
+                "cpp-output": "c",
+                "c++": "c++",
+                "c++-header": "c++",
+                "c++-cpp-output": "c++",
+                "none": "ext"
+            }
+        },
+        {"aliases": ["-c"], "type": "cmd", "kind": "compile"},
+        // Ignore linker to avoid double handling, might need to find other
+        // indicators of linker command if these are not present.
+        {"aliases": ["-Wl"], "type": "cmd", "kind": "ignore", "argFormat": ["attached"]},
+        {"aliases": ["-o"], "type": "output", "argFormat": ["space"]},
+        {
+            "aliases": [
+                "-S",
+                // Note the preprocess option comes later so we match this first.
+                "-E",
+                "-v",
+                "-###",
+                "--help",
+                "--target-help",
+                "--version",
+                "-M",
+                "-MM"
+            ],
+            "type": "cmd",
+            "kind": "ignore"
+        },
+        {"aliases": ["--help"], "type": "cmd", "kind": "ignore", "argFormat": ["attached"]},
+        {"aliases": ["-wrapper"], "type": "cmd", "kind": "ignore", "argFormat": ["space"]},
+        {"aliases": ["-f", "-W", "-g", "-O"], "type": "other", "argFormat": ["attached"]},
+        {"aliases": ["-E"], "type": "preprocess"},
+        {"aliases": ["-ansi"], "type": "scan"},
+        {
+            "aliases": ["-std"],
+            "type": "scan",
+            "argFormat": ["equal"],
+            "scanArgFormat": "equal",
+            "cArgValues": {
+                "iso9899:199x": "c99",
+                "c9x": "c99",
+                "gnu9x": "gnu99",
+                "gnu1x": "gnu11"
+            },
+            "cxxArgValues": {
+                "gnu++1z": "gnu++17",
+                "c++1z": "c++17",
+                "gnu++1y": "gnu++14",
+                "c++1y": "c++14",
+                "gnu++0x": "gnu++11",
+                "c++0x": "c++11",
+                "gnu++2a": "gnu++20",
+                "c++2a": "c++20"
+            }
+        },
+        {
+            "aliases": [
+                "-aux-info",
+                "-auxbase",
+                "-dumpbase",
+                "-dumpdir",
+                "-imultiarch",
+                "--param",
+                "-imacros",
+                "-A",
+                "-Xpreprocessor",
+                "-Xassembler",
+                "-l",
+                "-T",
+                "-Xlinker",
+                "-u",
+                "-z",
+                "-iquote",
+                "-idirafter",
+                "-iprefix",
+                "-iquote",
+                "-iwithprefix",
+                "-iwithprefixbefore",
+                "-isysroot",
+                "-imultilib",
+                "-D",
+                "-U",
+                "-I",
+                "-F",
+                "-auxbase-strip"
+            ],
+            "type": "other", "argFormat": ["space"]
+        },
+        {
+            "aliases":[
+                "-MG",
+                "-MP",
+                "-MD",
+                "-MMD",
+                "-MT",
+                "-MQ"
+            ],
+            "type": "delete",
+            "argFormat": ["space"]
+        },
+        {
+            "aliases":[
+                "-MF"
+            ],
+            "type": "delete",
+            "argFormat": ["attached", "space"]
+        },
+        {"aliases": ["-include"], "type": "include", "argFormat": ["space"]},
+        {"aliases": ["-isystem"], "type": "isystem", "argFormat": ["space"]},
+        {"aliases": ["-trigraphs"], "type": "scan"},
+        //{"aliases": ["-m"], "type": "scan", "argFormat": ["attached"], "scanArgFormat": "attached"},
+        {"aliases": ["@"], "type": "response", "argFormat" : ["attached"]}
+    ],
+    "cPrependPreprocessingOptions": [],
+    "cAppendPreprocessingOptions": [],
+    "cPrependScanOptions": [],
+    "cSystemIncludePaths": ["../../include/clang"],
+    "cPreIncludes": ["../../include/__xvsa_common.h"],
+    "cxxPrependPreprocessingOptions": [],
+    "cxxAppendPreprocessingOptions": [],
+    "cxxPrependScanOptions": [],
+    "cxxSystemIncludePaths": ["../../include/clang"],
+    "cxxPreIncludes": ["../../include/__xvsa_common.h"],
+    "probeCMacros":{
+        "__STDC_VERSION__": {
+            "__STDC_VERSION__": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu89"]}],
+            "199409L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu89"]}],
+            "199901L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu99"]}],
+            "201112L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu11"]}],
+            "201710L": [{"config": "cPrependScanOptions", "action": "prepend", "value": ["-std=gnu11"]}]
+        }
+    },
+    "probeCxxMacros":{
+        "__cplusplus": {
+            "199711L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++98"]}],
+            "201103L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++11"]}],
+            "201402L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++14"]}],
+            "201703L": [{"config": "cxxPrependScanOptions", "action": "prepend", "value": ["-std=gnu++17"]}]
+        }
+    },
+    "sourceExtensions": {
+        "preprocessed": [".i", ".ii"],
+        "c": [".c"],
+        "c++": [".cc", ".cp", ".cxx", ".cpp", ".CPP", ".c++", ".C"],
+        "assembly": [".s", ".S"]
+    },
+    "textSubstitutions": [{
+        "comment": "Not really working...",
+        "string": "__auto_type",
+        "replacement": "unsigned int *"
+    }]
+}

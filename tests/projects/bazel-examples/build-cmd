@@ -1,0 +1,1 @@
+bazel --batch build --nouse_action_cache --spawn_strategy=standalone --subcommands //main:hello-world

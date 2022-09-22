@@ -1,0 +1,36 @@
+{
+    "tools": [
+        {
+            "profile": "../keil/armcc.json",
+            "origin": ["keil"]
+        },
+        {
+            "profile": "../keil/armlink.json",
+            "origin": ["keil"]
+        },
+        {
+            "profile": "../keil/armasm.json",
+            "origin": ["keil"]
+        },
+        {
+            "profile": "../keil/armar.json",
+            "origin": ["keil"]
+        },
+        {
+            "profile": "../iar/iccarm.json",
+            "origin": ["iar"]
+        },
+        {
+            "profile": "../iar/ilink.json",
+            "origin": ["iar"]
+        },
+        {
+            "profile": "../iar/iarchive.json",
+            "origin": ["iar"]
+        },
+        {
+            "profile": "../iar/iasmarm.json",
+            "origin": ["iar"]
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "binary": "iccarm",
+    "responseFileArgs": [
+      {
+        "argument": "-f",
+        "argFormat": [ "space" ]
+      }
+    ]
+  },
+  {
+    "binary": "armclang",
+    "responseFileArgs": [
+      {
+        "argument": "@",
+        "argFormat": [ "attached" ]
+      }
+    ]
+  },
+  {
+    "binary": "armlink",
+    "responseFileArgs": [
+      {
+        "argument": "--Via",
+        "argFormat": [ "equal", "space" ]
+      }
+    ]
+  }
+]

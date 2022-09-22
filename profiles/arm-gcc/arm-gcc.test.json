@@ -1,0 +1,99 @@
+{
+    "version": "0.1",
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["arm-none-eabi-gcc","-D_GNU_SOURCE","-o","CMakeFiles/json-c-static.dir/arraylist.o", "-ansi", "-c","/work/arraylist.c"]
+            },
+            "expected": {
+                "kind": "compile",
+                "binary": "arm-none-eabi-gcc",
+                "fileFormat": "ext",
+                "sources": [{"file": "/work/arraylist.c", "format": "c"}],
+                "target": "/work/CMakeFiles/json-c-static.dir/arraylist.o",
+                "dir": "/work",
+                "ppOptions": ["-D_GNU_SOURCE","-ansi","-c"],
+                "cScanOptions": ["-ansi"],
+                "cxxScanOptions": ["-ansi"]
+            }
+        },
+        {
+            "name": "c++Aliases",
+            "command": {
+                "directory": "/work",
+                "arguments": ["arm-none-eabi-g++","-o","CMakeFiles/json-c-static.dir/arraylist.o","-c","/work/arraylist.c"]
+            },
+            "expected": {
+                "kind": "compile",
+                "binary": "arm-none-eabi-g++",
+                "fileFormat": "c++",
+                "sources": [{"file": "/work/arraylist.c", "format": "c++"}]
+            }
+        },
+        {
+            "name": "language-option",
+            "command": {
+                "directory": "/work",
+                "arguments": ["arm-none-eabi-g++","test1.c","-x","c","test2.c","-x","c++","test3.c", "-x","none","test4.c","test5.cc"]
+            },
+            "expected": {
+                "kind": "compile",
+                "binary": "arm-none-eabi-g++",
+                "fileFormat": "ext",
+                "sources": [
+                    {"file": "/work/test1.c", "format": "c++"},
+                    {"file": "/work/test2.c", "format": "c"},
+                    {"file": "/work/test3.c", "format": "c++"},
+                    {"file": "/work/test4.c", "format": "c"},
+                    {"file": "/work/test5.cc", "format": "c++"}
+                ],
+                "ppOptions": []
+            }
+        },
+        {
+            "name": "delete",
+            "command": {
+                "directory": "/work",
+                "arguments": ["arm-none-eabi-g++","-MD","a.d","-o","CMakeFiles/json-c-static.dir/arraylist.o","-c","/work/arraylist.c"]
+            },
+            "expected": {
+                "kind": "compile",
+                "ppOptions": ["-c"]
+            }
+        },
+        {
+            "name": "optional space",
+            "command": {
+                "directory": "/work",
+                "arguments": ["arm-none-eabi-g++","-MD","-MF", "a.d","-o","CMakeFiles/json-c-static.dir/arraylist.o","-c","/work/arraylist.c"]
+            },
+            "expected": {
+                "kind": "compile",
+                "ppOptions": ["-c"]
+            }
+        },
+        {
+            "name": "map arg value",
+            "command": {
+                "directory": "/work",
+                "arguments": ["arm-none-eabi-g++","-std=c++0x","-o","CMakeFiles/json-c-static.dir/arraylist.o","-c","/work/arraylist.c"]
+            },
+            "expected": {
+                "kind": "compile",
+                "cxxScanOptions": ["-std=c++11"]
+            }
+        },
+        {
+            "name": "ignore linker",
+            "command": {
+                "directory": "/work",
+                "arguments": ["arm-none-eabi-g++","-Wl,","-o","CMakeFiles/json-c-static.dir/arraylist.out","/work/arraylist.o"]
+            },
+            "expected": {
+                "kind": "ignore"
+            }
+        }
+    ]
+}

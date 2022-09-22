@@ -1,0 +1,1 @@
+Copy-Item "C:\iar-projects\arm" -Recurse -Destination .

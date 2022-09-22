@@ -1,0 +1,5 @@
+REPO_URL=https://github.com/openssl/openssl.git
+REPO_ID=45508a0ce8052c682ce63836656dfee06808f930
+REVISION=e1178600cc5d40b1e21c4a01d224afd2d8c7498a
+PROFILE=gnu
+TRACING=dynamic

@@ -1,0 +1,25 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["iarchive", "-o", "foo", "--text_out", "bar.txt", "a.o", "b.o"]
+            },
+            "expected": {
+                "kind": "archive",
+                "binary": "iarchive",
+                "fileFormat": "ext",
+                "sources": [
+                    {"file": "/work/a.o", "format": "object"},
+                    {"file": "/work/b.o", "format": "object"}
+                ],
+                "target": "/work/foo",
+                "dir": "/work",
+                "ppOptions": ["--text_out", "bar.txt"],
+                "cScanOptions": [],
+                "cxxScanOptions": []
+            }
+        }
+    ]
+}

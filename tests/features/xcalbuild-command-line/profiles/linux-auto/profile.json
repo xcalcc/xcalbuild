@@ -1,0 +1,24 @@
+{
+    "tools": [
+        {
+            "profile": "../clang/clang.json",
+            "origin": ["clang"]
+        },
+        {
+            "profile": "../gnu-cc/gcc.json",
+            "origin": ["gnu-cc"]
+        },
+        {
+            "profile": "../arm-gcc/arm-gcc.json",
+            "origin": ["arm-gcc"]
+        },
+        {
+            "profile": "../gnu/ld.json",
+            "origin": ["gnu-cc", "clang"]
+        },
+        {
+            "profile": "../gnu/ar.json",
+            "origin": ["gnu-cc", "clang"]
+        }
+    ]
+}

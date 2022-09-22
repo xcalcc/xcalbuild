@@ -1,0 +1,7 @@
+{
+    "aliases": ["gcc"],
+    "defaultCommandKind": "compile",
+    "options": [
+        {"aliases": ["-c"], "type": "other"}
+    ]
+}

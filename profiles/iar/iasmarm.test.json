@@ -1,0 +1,22 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["iasmarm","-o","foo.o","file1.s"]
+            },
+            "expected": {
+                "kind": "assemble",
+                "binary": "iasmarm",
+                "fileFormat": "ext",
+                "sources": [{"file": "/work/file1.s", "format": "assembly"}],
+                "target": "/work/foo.o",
+                "dir": "/work",
+                "ppOptions": [],
+                "cScanOptions": [],
+                "cxxScanOptions": []
+            }
+        }
+    ]
+}

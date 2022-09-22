@@ -1,0 +1,22 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["armasm","-o","foo.o","--cpu","ARM", "file1.s"]
+            },
+            "expected": {
+                "kind": "assemble",
+                "binary": "armasm",
+                "fileFormat": "ext",
+                "sources": [{"file": "/work/file1.s", "format": "assembly"}],
+                "target": "/work/foo.o",
+                "dir": "/work",
+                "ppOptions": ["--cpu", "ARM"],
+                "cScanOptions": [],
+                "cxxScanOptions": []
+            }
+        }
+    ]
+}

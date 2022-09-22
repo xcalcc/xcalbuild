@@ -1,0 +1,5 @@
+REPO_URL=https://github.com/bazelbuild/examples.git
+REPO_ID=b29794fb55f6714442dd86946c77f8908321a430
+REVISION=b29794fb55f6714442dd86946c77f8908321a430
+PROFILE=gnu-cc
+TRACING=static

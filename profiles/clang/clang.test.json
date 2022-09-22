@@ -1,0 +1,152 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clang","-D_GNU_SOURCE","-o","test.o", "-ansi", "-c","/work/test.c"]
+            },
+            "expected": {
+                "kind": "compile",
+                "binary": "clang",
+                "fileFormat": "ext",
+                "sources": [{"file": "/work/test.c", "format": "c"}],
+                "target": "/work/test.o",
+                "dir": "/work",
+                "ppOptions": ["-D_GNU_SOURCE","-ansi","-c"],
+                "cScanOptions": ["-clang","-ansi"],
+                "cxxScanOptions": ["-clang","-ansi"]
+            }
+        },
+        {
+            "name": "c++ aliases",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clang++","-D_GNU_SOURCE","-o","test.o", "-ansi", "-c","/work/test.c"]
+            },
+            "expected": {
+                "fileFormat": "c++",
+                "sources": [{"file": "/work/test.c", "format": "c++"}]
+            }
+        },
+        {
+            "name": "ignore",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clang","--help","-o","test.o","-c","/work/test.c"]
+            },
+            "expected": {
+                "kind": "ignore"
+            }
+        },
+        {
+            "name": "ignore attached",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clang", "-Wl,-lz", "-o","a.out", "test.o"]
+            },
+            "expected": {
+                "kind": "ignore"
+            }
+        },
+        {
+            "name": "delete",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clang", "-MT", "-MF", "test.d", "-o","test.o", "-ansi", "-c","test.c"]
+            },
+            "expected": {
+                "ppOptions": ["-ansi","-c"]
+            }
+        },
+        {
+            "name": "optional arg",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clang", "-MT", "test.d", "-o","test.o", "-ansi", "-c","test.c"]
+            },
+            "expected": {
+                "ppOptions": ["-ansi","-c"]
+            }
+        },
+        {
+            "name": "scan option map c arg value",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clang", "-std=c9x", "-o","test.o", "-c","test.c"]
+            },
+            "expected": {
+                "cScanOptions": ["-clang", "-std=c99"]
+            }
+        },
+        {
+            "name": "scan option map c++ arg value",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clangplus", "-std=gnu++1z", "-o","test.o", "-c","test.c"]
+            },
+            "expected": {
+                "cxxScanOptions": ["-clang", "-std=gnu++17"]
+            }
+        },
+        {
+            "name": "scan option original arg value",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clangplus", "-std=gnu++17", "-o","test.o", "-c","test.c"]
+            },
+            "expected": {
+                "cxxScanOptions": ["-clang", "-std=gnu++17"]
+            }
+        },
+        {
+            "name": "other option",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clang++", "-D", "X=1", "-DY=1", "-o","test.o", "-c","test.c"]
+            },
+            "expected": {
+                "ppOptions": ["-D", "X=1", "-DY=1", "-c"]
+            }
+        }
+    ],
+    "preprocessingOptionTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clang","-D_GNU_SOURCE","-o","test.o", "-ansi", "-c","/work/test.c"]
+            },
+            "target": "temp",
+            "format": "c",
+            "expected": [
+                "-isystem","../../include/clang",
+                "-D_GNU_SOURCE","-ansi", "-c",
+                "-E",
+                "-o","temp"
+            ]
+        },
+        {
+            "name": "basic C++, no system header change",
+            "command": {
+                "directory": "/work",
+                "arguments": ["clangplus","-D_GNU_SOURCE","-o","test.o", "-ansi", "-c","/work/test.c"]
+            },
+            "target": "temp",
+            "format": "c++",
+            "expected": [
+                "-isystem","../../include/clang",
+                "-D_GNU_SOURCE","-ansi", "-c",
+                "-E",
+                "-o","temp"
+            ]
+        }
+    ],
+    "sourceTransformationTests": [
+        {
+            "name": "asm-constraint",
+            "source": "__asm__ __volatile__(\"=@ccnz\");",
+            "expected": "__asm__ __volatile__(\"=q\");"
+        }
+    ]
+}

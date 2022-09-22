@@ -1,0 +1,37 @@
+// From `man as` and `as --help`.
+{
+    "aliases": ["as"],
+    "defaultCommandKind": "assemble",
+    // Handle all interesting options and those with argFormat = space.
+    "optionPrefix": "-",
+    "options": [
+        {"aliases": ["@"], "type": "response", "argFormat" : ["attached"]},
+        {"aliases": ["-o"], "type": "output", "argFormat": ["space"]},
+        {
+            "aliases": [
+                "--debug-prefix-map",
+                "--defsym",
+                "--hash-size",
+                "-I",
+                "--MD"
+            ],
+            "type": "other",
+            "argFormat" : ["space"]
+        },
+        {
+            "aliases": [
+                "--version",
+                // The following two, if used, likely mean the command should be ignored.
+                "-v",
+                "-version",
+                "--help",
+                "--target-help"
+            ],
+            "type": "cmd",
+            "kind": "ignore"
+        }
+    ],
+    "sourceExtensions": {
+        "assembly": [".s"]
+    }
+}

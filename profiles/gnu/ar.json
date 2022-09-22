@@ -1,0 +1,44 @@
+// From `man ar`.
+{
+    "aliases": ["ar", "arm-none-eabi-ar"],
+    "defaultCommandKind": "archive",
+    "optionPrefix": "-",
+    "options": [
+        {
+            // Make sure these are not source files.
+            "aliases": ["q", "r", "cq", "cr", "qc", "rc", "cru", "crv", "rcsD"],
+            "type": "other"
+        },
+        {
+            // Make sure these are not source files.
+            "aliases": ["d", "m", "p", "s", "t", "x"],
+            "type": "cmd",
+            "kind": "ignore"
+        },
+        {
+            "aliases": [
+                "--plugin",
+                "--target"
+            ],
+            "type": "other",
+            "argFormat" : ["space"]
+        },
+        {
+            "aliases": [
+                "--version",
+                "--help"
+            ],
+            "type": "cmd",
+            "kind": "ignore"
+        },
+        {"aliases": ["@"], "type": "response", "argFormat" : ["attached"]}
+    ],
+    "sourceExtensions": {
+        "object": [".o", ".obj"]
+    },
+/* Set target extensions to identify the archive,
+   since it is not specified by an option. */
+    "targetExtensions": {
+        "library": [".a", ".so", ".lib", ""]
+    }
+}

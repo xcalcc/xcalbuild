@@ -1,0 +1,5 @@
+REPO_URL=https://github.com/Kitware/CMake.git
+REPO_ID=89479bde949b1ac33c37953ed768cd85b7d8109d
+REVISION=89479bde949b1ac33c37953ed768cd85b7d8109d
+PROFILE=gnu
+TRACING=dynamic

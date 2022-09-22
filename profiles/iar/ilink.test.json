@@ -1,0 +1,25 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["ilink", "--log_file", "foo.txt", "--text_out", "bar.txt", "a.o", "b.o", "--output", "foo.out"]
+            },
+            "expected": {
+                "kind": "link",
+                "binary": "ilink",
+                "fileFormat": "ext",
+                "sources": [
+                    {"file": "/work/a.o", "format": "object"},
+                    {"file": "/work/b.o", "format": "object"}
+                ],
+                "target": "/work/foo.out",
+                "dir": "/work",
+                "ppOptions": ["--text_out", "bar.txt"],
+                "cScanOptions": [],
+                "cxxScanOptions": []
+            }
+        }
+    ]
+}

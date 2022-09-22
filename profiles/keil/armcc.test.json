@@ -1,0 +1,22 @@
+{
+    "commandlineParsingTests": [
+        {
+            "name": "basic",
+            "command": {
+                "directory": "/work",
+                "arguments": ["armcc", "foo.c", "--list_dir", "./lst", "-DFOO", "--trirgraphs", "-o", "foo.o", "--info", "blah"]
+            },
+            "expected": {
+                "kind": "compile",
+                "binary": "armcc",
+                "fileFormat": "ext",
+                "sources": [{"file": "/work/foo.c", "format": "c"}],
+                "target": "/work/foo.o",
+                "dir": "/work",
+                "ppOptions": ["-DFOO", "--trirgraphs", "--info", "blah"],
+                "cScanOptions": ["-Wf,-fkeil", "-m32"],
+                "cxxScanOptions": ["-Wf,-fkeil", "-m32"]
+            }
+        }
+    ]
+}
