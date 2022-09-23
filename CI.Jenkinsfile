@@ -13,8 +13,8 @@ pipeline {
         ARTIFACTS_PATH="${WORKDIR}/artifacts/"
         BUILD_SCRIPT_DIR="${WORKDIR}/script/build/lin/"
         DOCKER_TAG="hub.xcalibyte.co/sdlc/xcalbuildbuilder:1.0"
-        XCALBUILD_NEXUS_REPO_ADDRESS_SH="${XCALBUILD_NEXUS_REPO_ADDRESS_SH ? XCALBUILD_NEXUS_REPO_ADDRESS_SH : 'http://10.10.4.154:8081/repository/xcalbuild/'}"
-        XCALBUILD_NEXUS_REPO_ADDRESS_SZ="${XCALBUILD_NEXUS_REPO_ADDRESS_SZ ? XCALBUILD_NEXUS_REPO_ADDRESS_SZ : 'http://10.10.2.141:8081/repository/xcalbuild/'}"
+        XCALBUILD_NEXUS_REPO_ADDRESS_SH="${XCALBUILD_NEXUS_REPO_ADDRESS_SH ? XCALBUILD_NEXUS_REPO_ADDRESS_SH : 'http://127.0.0.1:8081/repository/xcalbuild/'}"
+        XCALBUILD_NEXUS_REPO_ADDRESS_SZ="${XCALBUILD_NEXUS_REPO_ADDRESS_SZ ? XCALBUILD_NEXUS_REPO_ADDRESS_SZ : 'http://127.0.0.1:8081/repository/xcalbuild/'}"
         BUILD_SCRIPT="bash scripts/build/lin/build.sh"
     }
 
